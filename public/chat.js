@@ -19,11 +19,13 @@ bouton.addEventListener("click", function() {
 });
 
 message.addEventListener("keypress", function(pressedKey) {
-  if (pressedKey.keyCode == 13) {
-    socket.emit("chat", { message: message.value, pseudo: pseudo.value });
-    message.value = "";
-  } else {
-	socket.emit("typing", pseudo.value);
+  if (message.innerHTML !== "") {
+    if (pressedKey.keyCode == 13) {
+      socket.emit("chat", { message: message.value, pseudo: pseudo.value });
+      message.value = "";
+    } else {
+      socket.emit("typing", pseudo.value);
+    }
   }
 });
 
